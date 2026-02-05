@@ -23,8 +23,8 @@ const AdminLogin = () => {
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     // NEW SECURE CREDENTIALS - CHANGE HERE IF NEEDED
-    const ADMIN_USERNAME = 'Bismillah';
-    const ADMIN_PASSWORD = 'Shahreyarr@786';
+    const ADMIN_USERNAME = import.meta.env.VITE_ADMIN_USERNAME || 'admin';
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'fallback';
 
     const success = username === ADMIN_USERNAME && password === ADMIN_PASSWORD;
     
