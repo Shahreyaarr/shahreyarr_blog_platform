@@ -50,22 +50,7 @@ const HeroSection = () => {
           {settings.hero_title}
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-lg sm:text-xl md:text-2xl text-white/80 mb-10 max-w-3xl mx-auto animate-fade-in-up animation-delay-200">
-          {settings.hero_subtitle}
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
-          <Link
-            to="/gallery"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-gray-900 font-semibold hover:bg-gray-100 transition-all hover:scale-105"
-          >
-            <Camera className="w-5 h-5" />
-            View Gallery
-          </Link>
-          <Link
-            to="/destinations"
+        
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm text-white font-semibold border border-white/30 hover:bg-white/20 transition-all hover:scale-105"
           >
             <MapPin className="w-5 h-5" />
