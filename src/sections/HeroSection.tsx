@@ -34,11 +34,7 @@ const HeroSection = () => {
           />
         </div>
       ))}
-
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
-
-      {/* Animated Gradient */}
+   {/* Animated Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 animate-pulse" />
 
       {/* Content */}
