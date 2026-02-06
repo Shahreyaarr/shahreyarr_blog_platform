@@ -12,6 +12,16 @@ const firebaseConfig = {
   messagingSenderId: "123456789",
   appId: "1:123456789:web:abcdef123456"
 };
+// Agar nahi hai toh yeh add karo:
+export interface ChatMessage {
+  id?: string;
+  text?: string;
+  imageUrl?: string;
+  sender: 'user' | 'admin';
+  timestamp?: number;
+  read?: boolean;
+  replyTo?: ChatMessage; // YEH ADD KARO
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
