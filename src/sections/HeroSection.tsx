@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Camera, MapPin } from 'lucide-react';
 import { useSettingsStore } from '@/store';
 
 const HeroSection = () => {
@@ -43,12 +41,6 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8 animate-fade-in">
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-white/90 text-sm font-medium">Available for collaborations</span>
-        </div>
-
         {/* Title */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up">
           {settings.hero_title}
@@ -59,27 +51,8 @@ const HeroSection = () => {
           {settings.hero_subtitle}
         </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
-          <Link
-            to="/gallery"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-gray-900 font-semibold hover:bg-gray-100 transition-all hover:scale-105"
-          >
-            <Camera className="w-5 h-5" />
-            View Gallery
-          </Link>
-          <Link
-            to="/destinations"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm text-white font-semibold border border-white/30 hover:bg-white/20 transition-all hover:scale-105"
-          >
-            <MapPin className="w-5 h-5" />
-            Explore Destinations
-            <ArrowRight className="w-5 h-5" />
-          </Link>
-        </div>
-
         {/* Author Info */}
-        <div className="mt-16 flex items-center justify-center gap-4 animate-fade-in-up animation-delay-600">
+        <div className="mt-16 flex items-center justify-center gap-4 animate-fade-in-up animation-delay-400">
           <img
             src={user.avatar}
             alt={user.name}
@@ -108,13 +81,6 @@ const HeroSection = () => {
           ))}
         </div>
       )}
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 right-8 hidden lg:block z-10">
-        <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2">
-          <div className="w-1 h-2 rounded-full bg-white animate-bounce" />
-        </div>
-      </div>
     </section>
   );
 };
