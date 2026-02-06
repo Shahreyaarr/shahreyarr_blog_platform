@@ -24,7 +24,7 @@ const AdminLogin = () => {
 
     // NEW SECURE CREDENTIALS - CHANGE HERE IF NEEDED
  // TEMPORARY: Direct comparison (remove env vars for now)
-  if (username === 'Bismillah@' && password === 'DubAi@687') {
+ if (username === 'Bismillah@895375' && password === 'Azlan@6873701') {
     localStorage.setItem('adminAuth', 'true');
     window.location.href = '/admin/dashboard';
   } else {
