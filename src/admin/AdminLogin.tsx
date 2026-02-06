@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
+  const login = useAdminStore((state) => state.login);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -22,21 +23,8 @@ const AdminLogin = () => {
     // Simulate network delay
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    // NEW SECURE CREDENTIALS - CHANGE HERE IF NEEDED
- // TEMPORARY: Direct comparison (remove env vars for now)
- if (username === 'Bismillah@895375' && password === 'Azlan@6873701') {
-    localStorage.setItem('adminAuth', 'true');
-    window.location.href = '/admin/dashboard';
-  } else {
-    setError('Invalid username or password');
-  }
-};
-    const success = username === ADMIN_USERNAME && password === ADMIN_PASSWORD;
-    
+    const success = login(username, password);
     if (success) {
-      // Update store
-      const { login } = useAdminStore.getState();
-      login(username, password);
       navigate('/admin');
     } else {
       setError('Invalid username or password');
@@ -119,6 +107,12 @@ const AdminLogin = () => {
               )}
             </Button>
           </form>
+
+          <div className="mt-6 text-center">
+            <p className="text-gray-400 text-sm">
+              Default: admin / password
+            </p>
+          </div>
         </div>
 
         {/* Back to Site */}
