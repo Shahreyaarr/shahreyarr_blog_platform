@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Send, Image as ImageIcon, Loader2, Check, CheckCheck, Smile } from 'lucide-react';
 import {
@@ -48,15 +49,23 @@ const Chatbot = () => {
     }
   }, [messages]);
 
+  // 🔥 SINGLE handleRegister function with debug logs
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!userName.trim() || !userEmail.trim()) return;
+    console.log("🔥 Button clicked!");
     
+    if (!userName.trim() || !userEmail.trim()) {
+      console.log("🔥 Validation failed");
+      return;
+    }
+
     try {
+      console.log("🔥 Initializing session...", sessionId.current, userName, userEmail);
       await initializeSession(sessionId.current, userName.trim(), userEmail.trim());
+      console.log("🔥 Session initialized!");
       setIsRegistered(true);
     } catch (error) {
-      console.error("Registration error:", error);
+      console.error("🔥 Registration error:", error);
       alert("Failed to start chat. Please try again.");
     }
   };
@@ -329,3 +338,4 @@ const Chatbot = () => {
 };
 
 export default Chatbot;
+EOF
