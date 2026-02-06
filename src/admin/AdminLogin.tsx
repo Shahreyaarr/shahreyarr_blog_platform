@@ -20,7 +20,6 @@ const AdminLogin = () => {
     setError('');
     setIsLoading(true);
 
-    // Simulate network delay
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     const success = login(username, password);
@@ -36,7 +35,6 @@ const AdminLogin = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        {/* Logo */}
         <div className="text-center mb-8">
           <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-4">
             <Camera className="w-10 h-10 text-white" />
@@ -45,7 +43,6 @@ const AdminLogin = () => {
           <p className="text-white/70">Admin Panel</p>
         </div>
 
-        {/* Login Card */}
         <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome Back</h2>
           <p className="text-gray-500 mb-6">Sign in to manage your portfolio</p>
@@ -97,7 +94,7 @@ const AdminLogin = () => {
 
             <Button
               type="submit"
-              className="w-full py-6 text-lg"
+              className="w-full py-6 text-lg bg-black hover:bg-gray-800 text-white"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -107,15 +104,8 @@ const AdminLogin = () => {
               )}
             </Button>
           </form>
-
-          <div className="mt-6 text-center">
-            <p className="text-gray-400 text-sm">
-              Default: admin / password
-            </p>
-          </div>
         </div>
 
-        {/* Back to Site */}
         <div className="text-center mt-8">
           <a href="/" className="text-white/80 hover:text-white transition-colors text-sm">
             &larr; Back to Website
