@@ -4,13 +4,14 @@ import { getDatabase, ref, push, onValue, off, set, update, serverTimestamp, que
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDummyKeyForDemoPurposes",
-  authDomain: "sahr-e-yaar-demo.firebaseapp.com",
-  databaseURL: "https://sahr-e-yaar-demo-default-rtdb.firebaseio.com",
-  projectId: "sahr-e-yaar-demo",
-  storageBucket: "sahr-e-yaar-demo.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef123456"
+ apiKey: "AIzaSyC-WvOhauJ0uWuqQduULSZIOs3zRiDltfs",
+  authDomain: "shahreyarchat.firebaseapp.com",
+  databaseURL: "https://shahreyarchat-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "shahreyarchat",
+  storageBucket: "shahreyarchat.firebasestorage.app",
+  messagingSenderId: "535731252720",
+  appId: "1:535731252720:web:0ff0d5cfc2b8b98cc5c135",
+  measurementId: "G-F2GEDKNVL8"
 };
 }
 
