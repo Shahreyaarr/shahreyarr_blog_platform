@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, Image as ImageIcon, Loader2, Check, CheckCheck, Reply, Smile } from 'lucide-react';
+import { MessageCircle, X, Send, Image as ImageIcon, Loader2, Check, CheckCheck, Smile } from 'lucide-react';
 import {
   getSessionId,
   initializeSession,
@@ -22,7 +22,6 @@ const RealtimeChat = () => {
   const [imageUrl, setImageUrl] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [showImageInput, setShowImageInput] = useState(false);
-  const [replyTo, setReplyTo] = useState<ChatMessage | null>(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const sessionId = useRef(getSessionId());
@@ -66,13 +65,11 @@ const RealtimeChat = () => {
       imageUrl: imageUrl || undefined,
       sender: 'user',
       read: false,
-      replyTo: replyTo || undefined,
     };
     await sendMessage(sessionId.current, message);
     setNewMessage('');
     setImageUrl('');
     setShowImageInput(false);
-    setReplyTo(null);
   };
 
   const formatTime = (timestamp: number) => {
@@ -196,34 +193,18 @@ const RealtimeChat = () => {
                       </div>
                     )}
                     {messages.map((msg, index) => {
-                      const bubbleClass = msg.sender === 'user'
-                        ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-br-md'
-                        : 'bg-white text-gray-800 rounded-bl-md shadow-sm border border-gray-100';
-                      
+                      const isUser = msg.sender === 'user';
                       return (
                         <div
                           key={msg.id || index}
-                          className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                          className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}
                         >
                           <div className="max-w-[85%]">
-                            {msg.replyTo && (
-                              <div className="text-xs text-gray-500 mb-1 bg-gray-200/70 rounded-t-xl px-3 py-1.5 border-l-2 border-purple-500">
-                                <span className="font-medium text-purple-600">
-                                  {msg.replyTo.sender === 'user' ? 'You' : 'Admin'}
-                                </span>
-                                <p className="truncate">{msg.replyTo.text?.substring(0, 40)}...</p>
-                              </div>
-                            )}
-                            
-                            <div className={`rounded-2xl px-4 py-2.5 relative group ${bubbleClass}`}>
-                              <button
-                                onClick={() => setReplyTo(msg)}
-                                className="absolute -top-2 -right-2 w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
-                                title="Reply"
-                              >
-                                <Reply className="w-3 h-3 text-gray-600" />
-                              </button>
-
+                            <div className={`rounded-2xl px-4 py-2.5 ${
+                              isUser
+                                ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-br-md'
+                                : 'bg-white text-gray-800 rounded-bl-md shadow-sm border border-gray-100'
+                            }`}>
                               {msg.imageUrl && (
                                 <img
                                   src={msg.imageUrl}
@@ -233,9 +214,11 @@ const RealtimeChat = () => {
                               )}
                               {msg.text && <p className="text-sm leading-relaxed">{msg.text}</p>}
                               
-                              <div className={`flex items-center justify-end gap-1 mt-1.5 ${msg.sender === 'user' ? 'text-white/70' : 'text-gray-400'}`}>
+                              <div className={`flex items-center justify-end gap-1 mt-1.5 ${
+                                isUser ? 'text-white/70' : 'text-gray-400'
+                              }`}>
                                 <span className="text-[10px]">{formatTime(msg.timestamp)}</span>
-                                {msg.sender === 'user' && (
+                                {isUser && (
                                   msg.read ? <CheckCheck className="w-3.5 h-3.5" /> : <Check className="w-3.5 h-3.5" />
                                 )}
                               </div>
@@ -263,21 +246,6 @@ const RealtimeChat = () => {
 
               {isRegistered && (
                 <div className="bg-white p-3 border-t border-gray-100">
-                  {replyTo && (
-                    <div className="mb-2 bg-gray-100 rounded-lg px-3 py-2 flex items-center justify-between">
-                      <div className="flex-1 mr-2">
-                        <p className="text-xs text-gray-500">Replying to</p>
-                        <p className="text-sm text-gray-700 truncate">{replyTo.text}</p>
-                      </div>
-                      <button
-                        onClick={() => setReplyTo(null)}
-                        className="text-gray-400 hover:text-gray-600"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  )}
-                  
                   {showImageInput && (
                     <div className="mb-2">
                       <Input
